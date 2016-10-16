@@ -1,0 +1,26 @@
+{
+  "name": "super-tribble",
+  "version": "1.0.0",
+  "description": "gRPC example",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-skieha/super-tribble.git"
+  },
+  "keywords": [
+    "grpc"
+  ],
+  "author": "Njeri Kieha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andela-skieha/super-tribble/issues"
+  },
+  "homepage": "https://github.com/andela-skieha/super-tribble#readme",
+  "dependencies": {
+    "grpc": "^1.0.1-pre1"
+  }
+}
