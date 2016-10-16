@@ -10,6 +10,8 @@ const books = [
   }
 ];
 
+let bookStream;
+
 const server = new grpc.Server();
 
 server.addProtoService(booksProto.books.BookService.service, {
@@ -18,7 +20,12 @@ server.addProtoService(booksProto.books.BookService.service, {
   },
 
   insert: function(call, callback) {
-    books.push(call.request);
+    const book = call.request;
+    books.push(book);
+
+    if (bookStream) {
+      bookStream.write(book)
+    }
     callback(null, {});
   },
 
@@ -45,6 +52,10 @@ server.addProtoService(booksProto.books.BookService.service, {
       code: grpc.status.NOT_FOUND,
       details: 'Not Found'
     });
+  },
+
+  watch: function(stream) {
+    bookStream = stream;
   }
 
 });
