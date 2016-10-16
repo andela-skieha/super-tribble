@@ -15,6 +15,11 @@ const server = new grpc.Server();
 server.addProtoService(booksProto.books.BookService.service, {
   list: function(call, callback) {
     callback(null, books);
+  },
+
+  insert: function(call, callback) {
+    books.push(call.request);
+    callback(null, {});
   }
 });
 
