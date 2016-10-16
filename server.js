@@ -20,7 +20,20 @@ server.addProtoService(booksProto.books.BookService.service, {
   insert: function(call, callback) {
     books.push(call.request);
     callback(null, {});
+  },
+
+  get: function(call, callback) {
+    for (var i = 0; i < books.length; i++) {
+      if (books[i].id == call.request.id) {
+        return callback(null, books[i]);
+      }
+    }
+    callback({
+      code: grpc.status.NOT_FOUND,
+      details: 'Not Found'
+    });
   }
+
 });
 
 server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
